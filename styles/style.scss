@@ -1,0 +1,223 @@
+@import 'variables';
+@import 'mixins';
+
+body {
+  font-family: $font-family;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  @include theme-colors(light); 
+
+  &.dark-theme {
+    @include theme-colors(dark); 
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto; 
+    grid-template-areas:
+      "header"
+      "bio"
+      "contacts"
+      "skills"
+      "social"
+      "button"
+      "activity";
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+    border: 1px solid $main-color;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px; 
+    width: 100%;
+
+    &__header {
+      grid-area: header;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &__avatar {
+      width: $avatar-size;
+      height: $avatar-size;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid $main-color;
+    }
+
+    &__name {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+    }
+
+    &__bio {
+      grid-area: bio;
+      text-align: center;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    &__contacts {
+      grid-area: contacts;
+      text-align: center;
+      font-size: 14px;
+
+      p {
+        margin: 5px 0;
+      }
+    }
+
+    &__skills {
+      grid-area: skills;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        background-color: $main-color;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+      }
+    }
+
+    &__social {
+      grid-area: social;
+      display: flex;
+      gap: 15px;
+
+      &-link {
+        color: $main-color;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+
+        &:hover {
+          color: darken($main-color, 20%);
+        }
+      }
+    }
+
+    &__button {
+      grid-area: button;
+      padding: 10px 20px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    &__activity {
+      grid-area: activity;
+      width: 100%;
+      text-align: left;
+
+      h3 {
+        margin-top: 0;
+        font-size: 18px;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin-bottom: 0;
+
+        li {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    @include media-query(768px) {
+      padding: 1.5rem;
+      gap: 10px;
+      max-width: 350px;
+
+      &__avatar {
+        width: 80px;
+        height: 80px;
+      }
+
+      &__name {
+        font-size: 20px;
+      }
+
+      &__skills {
+        flex-direction: column;
+        align-items: center;
+
+        li {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      &__social {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &__button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    }
+
+    @include media-query(480px) {
+      padding: 1rem;
+      gap: 8px;
+      max-width: 100%;
+
+      &__avatar {
+        width: 60px;
+        height: 60px;
+      }
+
+      &__name {
+        font-size: 18px;
+      }
+
+      &__bio, &__contacts p {
+        font-size: 13px;
+      }
+
+      &__skills li {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+
+      &__button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      &__activity h3 {
+        font-size: 16px;
+      }
+
+      &__activity li {
+        font-size: 12px;
+      }
+    }
+  }
+}

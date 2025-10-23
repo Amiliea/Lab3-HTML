@@ -1,0 +1,42 @@
+@mixin media-query($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin theme-colors($theme: light) {
+  @if $theme == dark {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
+
+    .profile {
+      background-color: $dark-card-bg;
+      border-color: $dark-border-color;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05); 
+      &__button {
+        background-color: $dark-button-bg;
+
+        &:hover {
+          background-color: darken($dark-button-bg, 10%);
+        }
+      }
+    }
+  } @else {
+    background-color: $light-background-color;
+    color: $light-text-color;
+
+    .profile {
+      background-color: $light-card-bg;
+      border-color: $light-border-color;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+      &__button {
+        background-color: $light-button-bg;
+
+        &:hover {
+          background-color: darken($light-button-bg, 10%);
+        }
+      }
+    }
+  }
+}
